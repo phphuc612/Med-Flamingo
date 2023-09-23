@@ -364,3 +364,10 @@ venv/
 # Log files
 *.log
 sweep/
+
+
+###################################
+#### ALLOWED TO BE COMMITTED ######
+###################################
+!llama-7b-hf/
+!llama-7b-hf/*
