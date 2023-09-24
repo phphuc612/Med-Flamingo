@@ -36,6 +36,8 @@ def init_logger() -> logging.Logger:
     # add console handler to logger
     logger.addHandler(ch)
 
+    return logger
+
 logger = init_logger()
 
 def debug(msg):
@@ -48,10 +50,12 @@ def watch_and_kill(pid, memory_threshold = 1024 * 1024 * 1024 * 10) -> None:
     import psutil
     import time
 
+    print("[Watch-and-kill] Starting memory guard..")
     # get current timestamp
     start = time.time()
     elapse = 120 # seconds
     cnt = 0
+    print(start)
 
     # get current memory usage
     process = psutil.Process(pid)
@@ -61,17 +65,18 @@ def watch_and_kill(pid, memory_threshold = 1024 * 1024 * 1024 * 10) -> None:
 
         # check if memory usage exceeds threshold
         if memory_usage > memory_threshold:
-            debug(f"Memory usage ({memory_usage} bytes) exceeds threshold ({memory_threshold} bytes), killing process {pid}..")
+            print(f"[Watch-and-kill] Memory usage ({memory_usage} bytes) exceeds threshold ({memory_threshold} bytes), killing process {pid}..")
             process.kill()
         else:
-            if (time.time() - start) // elapse == cnt:
-                debug(f"Memory usage ({memory_usage} bytes) is below threshold ({memory_threshold} bytes), continuing..")
+            if (int(time.time() - start) // elapse) == cnt:
+                print(f"[Watch-and-kill] Memory usage ({memory_usage} bytes) is below threshold ({memory_threshold} bytes), continuing..")
                 cnt += 1
 
-    print(f"Process {pid} no longer exists, exiting..")
+    print(f"[Watch-and-kill] Process {pid} no longer exists, exiting..")
+
 
 def main():
-    memory_guard = multiprocessing.Process(target=watch_and_kill, args=(os.getpid(),))
+    memory_guard = multiprocessing.Process(target=watch_and_kill, args=(os.getpid(), ))
     memory_guard.start()
 
     accelerator = Accelerator() #when using cpu: cpu=True
@@ -81,7 +86,7 @@ def main():
     print('Loading model..')
 
     # >>> add your local path to Llama-7B (v1) model here:
-    llama_path = '../models/llama-7b-hf'
+    llama_path = './llama-7b-hf'
     if not os.path.exists(llama_path):
         raise ValueError('Llama model not yet set up, please check README for instructions!')
 

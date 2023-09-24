@@ -47,6 +47,7 @@ docs/source/compile/generated/
 docs/source/generated/
 docs/source/compile/generated/
 log
+log.txt
 usage_log.txt
 test-reports/
 test/*.bak

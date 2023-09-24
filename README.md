@@ -1,6 +1,6 @@
 # Med-Flamingo  
 
-<img src="img/logo.png" width="100">
+<img src="img/logo.png" width="100">  
 
 This is the code repo for the [Med-Flamingo paper](https://arxiv.org/abs/2307.15189).
 
