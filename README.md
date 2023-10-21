@@ -1,6 +1,6 @@
 # Med-Flamingo  
 
-<img src="img/logo.png" width="100">  
+<img src="img/logo.png" width="100">
 
 This is the code repo for the [Med-Flamingo paper](https://arxiv.org/abs/2307.15189).
 
@@ -42,8 +42,6 @@ Now, you should be all set.
 
 ```$python demo.py``` 
 
-
-**Note:** You can find a notebook that you can run on free Colab here  [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Abir196/med-flamingo/blob/master/notebooks/Med_Flamingo_on_free_Colab.ipynb)!
 
 
 ## Citing  
